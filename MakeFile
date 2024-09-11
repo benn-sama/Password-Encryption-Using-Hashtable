@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -g -std=c++14 -Wall -Werror=return-type -Werror=uninitialized -Wno-sign-compare
 
 HEADERS = random-password.hpp
-OBJECTS = test/test.o
+OBJECTS = test/test-cases.o
 TARGET = test
 
 all: $(TARGET)
