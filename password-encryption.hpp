@@ -6,6 +6,11 @@
 class PasswordEncrypt {
   private:
     std::string password;
+  public:
+    // default constructor
+    PasswordEncrypt();
+
+    // encrypts and returns 
 };
 
 #endif
