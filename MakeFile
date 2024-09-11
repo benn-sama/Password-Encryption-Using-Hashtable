@@ -10,7 +10,7 @@ all: $(TARGET)
 $(TARGET): $(OBJECTS)
 	$(CXX) -o $@ $^
 
-run_test: $(TARGET)
+test: $(TARGET)
 	./$(TARGET)
 
 %.o: test/%.cpp $(HEADERS)
