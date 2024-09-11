@@ -3,17 +3,21 @@
 
 #include "random-password.hpp"
 #include <fstream>
+#include <exception>
+#include <iostream>
+#include <string>
+#include <vector>
+
 
 class Database {
   private:
-    std::string *name;
-    std::string *unencryptedPassword;
+    std::vector<std::string> userNameAndPassword;
   public:
-    // constructor automatically extracts data from names.txt, then create Rawdata.txt file
-    // that has usernames and random passwords
-    Database(std::string fileName);
+    // default constructor
+    Database();
 
-
+    // extract data
+    void dataExtraction(std::string fileName);
 };
 
 #endif

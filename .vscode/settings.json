@@ -75,6 +75,11 @@
 		"ratio": "cpp",
 		"sstream": "cpp",
 		"string_view": "cpp",
-		"unordered_map": "cpp"
+		"unordered_map": "cpp",
+		"deque": "cpp",
+		"fstream": "cpp",
+		"iomanip": "cpp",
+		"stack": "cpp",
+		"cassert": "cpp"
 	}
 }
