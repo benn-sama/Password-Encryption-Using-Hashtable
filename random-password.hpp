@@ -19,15 +19,18 @@ class RandomPassword {
       std::mt19937 gen(random());
       std::uniform_int_distribution<> dis(0, 93);
 
-      // adds a char into newPassword 9x
+      // adds a char into newPassword 9 times
       for (int i = 0; i < 9; ++i) {
         char passwordIndex = '!';
         addingIntoChar = dis(gen);
 
         // checks if passwords are consecutive. 
         // if consecutive, randomize password index until otherwise
-        if (i != 0) {
-          while ((addingIntoChar == newPassword[i - 1] - 1) || (addingIntoChar == newPassword[i + 1] + 1)) {
+        if (i != 0 && i != 8) {
+          char previousChar = newPassword[i - 1];
+          char nextChar = newPassword[i + 1];
+
+          while ((addingIntoChar == previousChar) || (addingIntoChar == nextChar)) {
             addingIntoChar = dis(gen);
           }
         }

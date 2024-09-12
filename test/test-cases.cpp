@@ -1,3 +1,4 @@
+#include "../database.hpp"
 #include "../random-password.hpp"
 #include <iostream>
 #include <cassert>
@@ -26,10 +27,21 @@ void test_random_password() {
 
   std::cout << std::endl << "Password values are sufficent!" << std::endl << std::endl;
 
-  std::cout << "----------test_random_password passed----------" << std::endl;
+  std::cout << "----------test_random_password passed----------" << std::endl << std::endl;
 
+}
+
+void test_database_extraction() {
+  Database database;
+
+  database.dataExtraction("names.txt");
+
+  std::cout << "----------test_database_extraction passed----------" << std::endl << std::endl;
 }
 
 int main() {
   test_random_password();
+  test_database_extraction();
+
+  return 1;
 }

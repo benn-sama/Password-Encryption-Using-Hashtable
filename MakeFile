@@ -1,8 +1,8 @@
 CXX = g++
 CXXFLAGS = -g -std=c++14 -Wall -Werror=return-type -Werror=uninitialized -Wno-sign-compare
 
-HEADERS = random-password.hpp
-OBJECTS = test/test-cases.o
+HEADERS = random-password.hpp database.hpp
+OBJECTS = test/test-cases.o database.o
 TARGET = test_executable
 
 all: $(TARGET)
@@ -10,11 +10,11 @@ all: $(TARGET)
 $(TARGET): $(OBJECTS)
 	$(CXX) -o $@ $^
 
-test: $(TARGET)
+runtest: $(TARGET)
 	./$(TARGET)
 
 %.o: test/%.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(OBJECTS) $(TARGET)
+	rm -f $(OBJECTS) $(TARGET) rawdata.txt
