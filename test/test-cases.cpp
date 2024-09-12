@@ -1,11 +1,13 @@
 #include "../database.hpp"
 #include "../random-password.hpp"
+#include "../password-encryption.hpp"
 #include <iostream>
 #include <cassert>
 #include <string>
 #include <exception>
 #include <vector>
 
+// test random password
 void test_random_password() {
   RandomPassword passwordGenerator;
   std::vector<std::string> stringVector;
@@ -31,6 +33,7 @@ void test_random_password() {
 
 }
 
+// test database extraction
 void test_database_extraction() {
   Database database;
 
@@ -39,9 +42,21 @@ void test_database_extraction() {
   std::cout << "----------test_database_extraction passed----------" << std::endl << std::endl;
 }
 
+// test password encryption
+void test_password_encryption() {
+  PasswordEncrypt passwordEncrypt;
+
+  std::string encryptedPassword = passwordEncrypt.encryptPassword("test", "datum");
+
+  std::cout << "Encrypted password: " << encryptedPassword << std::endl;
+
+  std::cout << "----------test_password_encryption passed----------" << std::endl << std::endl;
+}
+
 int main() {
   test_random_password();
   test_database_extraction();
+  test_password_encryption();
 
   return 1;
 }
