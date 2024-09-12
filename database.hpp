@@ -7,17 +7,23 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
 
 
 class Database {
   private:
     std::vector<std::string> userNameAndPassword;
+
+    // inputs data into file & exclusive to the class
+    void dataInput();
   public:
     // default constructor
     Database();
 
     // extract data
     void dataExtraction(std::string fileName);
+
+
 };
 
 #endif
