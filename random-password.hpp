@@ -22,23 +22,15 @@ class RandomPassword {
 
       // adds a char into newPassword 9 times
       for (int i = 0; i < 9; ++i) {
-        char passwordIndex = 'A';
+        char passwordIndex = 'a';
         addingIntoChar = dis(gen);
-        int lowerOrUpper = dis2(gen);
-
-        if (lowerOrUpper == 1) {
-          passwordIndex = 'a';
-        }
-        else {
-          passwordIndex = 'A';
-        }
 
         // checks if passwords are consecutive. 
         // if sequential, randomize password index until otherwise
         if (i != 0) {
           char previousChar = newPassword[i - 1];
 
-          while (std::abs(addingIntoChar - (previousChar - 'A')) == 1 || std::abs(addingIntoChar - (previousChar - 'a')) == 1) {
+          while (std::abs(addingIntoChar - (previousChar - 'a')) == 1) {
             addingIntoChar = dis(gen);
           }
         }

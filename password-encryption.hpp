@@ -4,8 +4,6 @@
 #include <string>
 
 class PasswordEncrypt {
-  private:
-    std::string password;
   public:
     // default constructor
     PasswordEncrypt();
