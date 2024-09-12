@@ -25,12 +25,11 @@ class RandomPassword {
         addingIntoChar = dis(gen);
 
         // checks if passwords are consecutive. 
-        // if consecutive, randomize password index until otherwise
-        if (i != 0 && i != 8) {
+        // if sequential, randomize password index until otherwise
+        if (i != 0) {
           char previousChar = newPassword[i - 1];
-          char nextChar = newPassword[i + 1];
 
-          while ((addingIntoChar == previousChar) || (addingIntoChar == nextChar)) {
+          while (std::abs(addingIntoChar - (previousChar - '!')) == 1) {
             addingIntoChar = dis(gen);
           }
         }
