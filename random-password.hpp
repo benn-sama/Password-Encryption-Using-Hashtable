@@ -17,19 +17,28 @@ class RandomPassword {
       // random generator declaration
       std::random_device random;
       std::mt19937 gen(random());
-      std::uniform_int_distribution<> dis(0, 93);
+      std::uniform_int_distribution<> dis(0, 25);
+      std::uniform_int_distribution<> dis2(0, 1);
 
       // adds a char into newPassword 9 times
       for (int i = 0; i < 9; ++i) {
-        char passwordIndex = '!';
+        char passwordIndex = 'A';
         addingIntoChar = dis(gen);
+        int lowerOrUpper = dis2(gen);
+
+        if (lowerOrUpper == 1) {
+          passwordIndex = 'a';
+        }
+        else {
+          passwordIndex = 'A';
+        }
 
         // checks if passwords are consecutive. 
         // if sequential, randomize password index until otherwise
         if (i != 0) {
           char previousChar = newPassword[i - 1];
 
-          while (std::abs(addingIntoChar - (previousChar - '!')) == 1) {
+          while (std::abs(addingIntoChar - (previousChar - 'A')) == 1 || std::abs(addingIntoChar - (previousChar - 'a')) == 1) {
             addingIntoChar = dis(gen);
           }
         }

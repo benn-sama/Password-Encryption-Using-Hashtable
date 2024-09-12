@@ -10,7 +10,8 @@ class PasswordEncrypt {
     // default constructor
     PasswordEncrypt();
 
-    // encrypts and returns 
+    // encrypts and returns
+    std::string encryptPassword(std::string userName, std::string password); 
 };
 
 #endif

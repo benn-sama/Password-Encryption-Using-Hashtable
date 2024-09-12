@@ -16,5 +16,8 @@ runtest: $(TARGET)
 %.o: test/%.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
+database.o: database.cpp database.hpp
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
 clean:
 	rm -f $(OBJECTS) $(TARGET) rawdata.txt
