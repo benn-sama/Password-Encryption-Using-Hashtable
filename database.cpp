@@ -7,6 +7,7 @@ Database::Database() {
 void Database::dataExtraction(std::string fileName) {
   std::ifstream inputFile(fileName);
   RandomPassword randomPassword;
+  PasswordEncrypt passwordEncrypt;
   std::string line = "";
   std::string name = "";
 
@@ -28,13 +29,39 @@ void Database::dataExtraction(std::string fileName) {
   }
 
   // calls method that creates a rawdata.txt file and inputs data into it
-  this->dataInput();
+  this->dataInput("rawdata.txt");
 
+  inputFile.close();
+
+  // opens rawdata.txt file
+  inputFile.open("rawdata.txt");
+  
+  // checks if file was successfully opened
+  while (!inputFile.is_open()) {
+    std::cout << "File: \"" << fileName << "\" failed to open." << std::endl;
+    std::cout << "File name: ";
+    std::getline(std::cin, fileName);
+    inputFile.open(fileName);
+  }
+
+  // encrypts password
+  while (getline(inputFile, line)) {
+    std::istringstream iss(line);
+    std::string name = "";
+    std::string password = "";
+
+    iss >> name;
+    iss >> password;
+
+    userNameAndPassword.push_back(passwordEncrypt.encryptPassword(name, password));
+  }
+
+  this->dataInput("encrypteddata.txt");
 }
 
 // inputs data into file & exclusive to the class
-void Database::dataInput() {
-  std::ofstream outputFile("rawdata.txt");
+void Database::dataInput(std::string filename) {
+  std::ofstream outputFile(filename);
 
   // writes into file all the usernames and passwords and erases them from the vector after 
   while (userNameAndPassword.size() != 0) {
@@ -42,5 +69,5 @@ void Database::dataInput() {
     userNameAndPassword.pop_back();
   }
 
-  std::cout << "rawdata.txt has been created." << std::endl;
+  std::cout << filename <<  " has been created." << std::endl;
 }

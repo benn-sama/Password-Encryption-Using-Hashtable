@@ -23,4 +23,4 @@ password-encryption.o: password-encryption.cpp password-encryption.hpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(OBJECTS) $(TARGET) rawdata.txt
+	rm -f $(OBJECTS) $(TARGET) rawdata.txt encrypteddata.txt
