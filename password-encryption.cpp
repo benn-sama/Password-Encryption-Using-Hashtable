@@ -43,3 +43,4 @@ passwordChar = (passwordChar + 'a'); // Convert back to ASCII
 
 return passwordChar;
 }
+
