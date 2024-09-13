@@ -46,13 +46,12 @@ void test_database_extraction() {
 void test_password_encryption() {
   PasswordEncrypt passwordEncrypt;
 
-  std::string encryptedPassword = passwordEncrypt.encryptPassword("test", "datum");
+  std::string encryptedPassword = passwordEncrypt.encryptPassword("ben", "datum");
 
-  if (encryptedPassword != "test mogye") {
-    throw std::runtime_error("Password Encryption Incorrect...");
+  if (encryptedPassword != "ben mofyd") {
+    std::cout << "Encrypted password: " << encryptedPassword << std::endl;
+    throw std::runtime_error("Encrypted password: is incorrect");
   }
-
-  std::cout << "Encrypted password: " << encryptedPassword << std::endl;
 
   std::cout << "----------test_password_encryption passed----------" << std::endl << std::endl;
 }

@@ -18,7 +18,7 @@ std::string PasswordEncrypt::encryptPassword(std::string userName, std::string p
 }
 
 char PasswordEncrypt::vCypher(int index, char passwordChar) {
-  passwordChar = passwordChar - 'a'; // Normalize to 0-25 range
+passwordChar = passwordChar - 'a'; // Normalize to 0-25 range
 
 // vCypher algorithm
 switch (index % 5) {
@@ -39,8 +39,8 @@ switch (index % 5) {
     break;
 }
 
- // Convert back to ASCII
-passwordChar = (passwordChar + 'a');
+passwordChar = (passwordChar + 'a'); // Convert back to ASCII
 
 return passwordChar;
 }
+
