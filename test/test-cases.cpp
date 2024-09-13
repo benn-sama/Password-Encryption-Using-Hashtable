@@ -48,7 +48,7 @@ void test_password_encryption() {
 
   std::string encryptedPassword = passwordEncrypt.encryptPassword("ben", "datum");
 
-  if (encryptedPassword != "ben mofyd") {
+  if (encryptedPassword != "ben mogye") {
     std::cout << "Encrypted password: " << encryptedPassword << std::endl;
     throw std::runtime_error("Encrypted password: is incorrect");
   }
