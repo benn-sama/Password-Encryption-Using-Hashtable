@@ -42,6 +42,7 @@ void test_database_extraction() {
   std::cout << "----------test_database_extraction passed----------" << std::endl << std::endl;
 }
 
+
 // test password encryption
 void test_password_encryption() {
   PasswordEncrypt passwordEncrypt;
@@ -54,6 +55,24 @@ void test_password_encryption() {
   }
 
   std::cout << "----------test_password_encryption passed----------" << std::endl << std::endl;
+}
+
+void test_database() {
+  Database dataBase;
+  std::string illegalUser = "ben";
+  std::string legalUser = "smith";
+
+  dataBase.dataMaster();
+
+  if (dataBase.searchUser(illegalUser) != "Illegal user not found!") {
+    throw std::runtime_error("User was found in the database!");
+  }
+
+  if (dataBase.searchUser(legalUser) == "Legal user not found!") {
+    throw std::runtime_error("User was not found in the database!");
+  }
+
+  std::cout << "----------test_database passed----------" << std::endl << std::endl;
 }
 
 int main() {

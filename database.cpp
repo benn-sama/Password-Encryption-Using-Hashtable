@@ -19,7 +19,7 @@ void Database::dataMaster() {
     iss.str(userNameAndPassword[i]);
     iss >> user;
     iss >> password;
-    
+
     hashTable.insertItem(user, password);
     iss.clear();
   }
@@ -28,7 +28,6 @@ void Database::dataMaster() {
 void Database::dataExtraction() {
   std::ifstream inputFile("names.txt");
   RandomPassword randomPassword;
-  PasswordEncrypt passwordEncrypt;
   std::string line = "";
   std::string name = "";
 
@@ -55,7 +54,6 @@ void Database::dataExtraction() {
 
 void Database::dataEncryption() {
   std::ifstream inputFile("rawdata.txt");
-  RandomPassword randomPassword;
   PasswordEncrypt passwordEncrypt;
   std::string line = "";
   std::string name = "";
@@ -128,3 +126,7 @@ void Database::dataInput(std::string filename) {
   std::cout << filename <<  " has been created." << std::endl;
 }
 
+// search for a key in the hash table
+std::string Database::searchUser(std::string key) {
+  return hashTable.searchItem(key);
+}

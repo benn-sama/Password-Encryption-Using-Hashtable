@@ -1,8 +1,8 @@
 CXX = g++
 CXXFLAGS = -g -std=c++14 -Wall -Werror=return-type -Werror=uninitialized -Wno-sign-compare
 
-HEADERS = random-password.hpp database.hpp password-encryption.hpp
-OBJECTS = test/test-cases.o database.o password-encryption.o
+HEADERS = random-password.hpp database.hpp password-encryption.hpp hashtable.hpp
+OBJECTS = test/test-cases.o database.o password-encryption.o hashtable.o
 TARGET = test_executable
 
 all: $(TARGET)
