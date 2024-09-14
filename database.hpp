@@ -16,7 +16,7 @@ class Database {
     std::vector<std::string> userNameAndPassword;
 
     // inputs data into file & exclusive to the class
-    void dataInput(std::string fileName);
+    void dataInput(std::string fileName) const;
   public:
     // default constructor
     Database();
