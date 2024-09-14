@@ -5,25 +5,19 @@
 #include <iostream>
 #include <list>
 
+// simple hash function to map values to key
 class Hash {
   private: 
-    static const int groupAmount = 20;
-    std::list<std::pair<int, std::string>> hashTable[groupAmount];
-  
-  public:
-    //checks if a group is empty
-    bool isEmpty() const;
-
-    // algorithm for the hash function
+    static const int groupSize = 15;
+    std::list<std::pair<int, std::string>> hashTable[groupSize];
+    
+    // Hash function to map values to key
     int hashFunction(int key);
-
-    // inserts item to the group
+  public:
+    // inserts a key-value pair into the hash table
     void insertItem(int key, std::string value);
 
-    // removes an item from the group
-    void removeItem(int key);
-
-    // searches for an item
+    // searches for a key in the hash table
     std::string searchItem(int key);
 };
 
