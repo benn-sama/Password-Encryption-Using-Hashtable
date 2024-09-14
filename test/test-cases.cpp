@@ -37,7 +37,7 @@ void test_random_password() {
 void test_database_extraction() {
   Database database;
 
-  database.dataExtraction("names.txt");
+  database.dataExtraction();
 
   std::cout << "----------test_database_extraction passed----------" << std::endl << std::endl;
 }

@@ -9,16 +9,16 @@
 class Hash {
   private: 
     static const int groupSize = 15;
-    std::list<std::pair<int, std::string>> hashTable[groupSize];
+    std::list<std::pair<std::string, std::string>> hashTable[groupSize];
     
     // Hash function to map values to key
-    int hashFunction(int key);
+    int hashFunction(const std::string &key);
   public:
     // inserts a key-value pair into the hash table
-    void insertItem(int key, std::string value);
+    void insertItem(const std::string& key, const std::string& value);
 
     // searches for a key in the hash table
-    std::string searchItem(int key);
+    std::string searchItem(const std::string key);
 };
 
 #endif

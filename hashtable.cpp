@@ -1,25 +1,39 @@
 #include "hashtable.hpp"
 
-int Hash::hashFunction(int key) {
-  return key % groupSize;
+// hash function
+int Hash::hashFunction(const std::string &key) {
+  int hash = 0;
+  int index = 0;
+
+  for (int i = 0; i < key.length(); i++) {
+    hash += (int)key[i];
+  }
+
+  index = hash % groupSize;
+
+  return index;
 }
 
-void Hash::insertItem(int key, std::string value) {
+// inserts a key value pair into the hash table
+void Hash::insertItem(const std::string& key, const std::string& value) {
   int index = hashFunction(key);
+  std::pair<std::string, std::string> pair(key, value);
 
-  // inserts key value pair into the hash table
-  hashTable[index].push_back(std::make_pair(key, value));
+  hashTable[index].push_back(pair);
 }
 
-std::string Hash::searchItem(int key) {
+// searches for a key in the hash table
+std::string Hash::searchItem(const std::string key) {
   int index = hashFunction(key);
+  std::list<std::pair<std::string, std::string>>::iterator it;
+  std::string value = "";
 
-  // iterate through the list to find the key
-  // auto is used instead of std::list<std::pair<int, std::string>>::iterator for readablity
-  for (auto it = hashTable[index].begin(); it != hashTable[index].end(); it++) {
+  for (it = hashTable[index].begin(); it != hashTable[index].end(); it++) {
     if (it->first == key) {
-      return it->second;
+      value = it->second;
     }
   }
-  return "Key not found";
+
+  return value;
 }
+

@@ -4,8 +4,29 @@ Database::Database() {
   // default constructor for instance
 }
 
-void Database::dataExtraction(std::string fileName) {
-  std::ifstream inputFile(fileName);
+// handles data transeferring and encryption
+void Database::dataMaster() {
+  std::istringstream iss;
+  std::string user = "";
+  std:: string password = "";
+
+  this->dataExtraction();
+  this->dataEncryption();
+  this->userAndPassExtraction("encrypteddata.txt");
+
+  // inserts data into hash table
+  for (int i = 0; i < userNameAndPassword.size(); i++) {
+    iss.str(userNameAndPassword[i]);
+    iss >> user;
+    iss >> password;
+    
+    hashTable.insertItem(user, password);
+    iss.clear();
+  }
+}
+
+void Database::dataExtraction() {
+  std::ifstream inputFile("names.txt");
   RandomPassword randomPassword;
   PasswordEncrypt passwordEncrypt;
   std::string line = "";
@@ -13,10 +34,8 @@ void Database::dataExtraction(std::string fileName) {
 
   // checks if file was successfully opened
   while (!inputFile.is_open()) {
-    std::cout << "File: \"" << fileName << "\" failed to open." << std::endl;
-    std::cout << "File name: ";
-    std::getline(std::cin, fileName);
-    inputFile.open(fileName);
+    std::cout << "File: \"names.txt\" failed to open." << std::endl;
+    exit(1);
   }
 
   // extracts data from file and appends random password to the end of the name
@@ -32,16 +51,19 @@ void Database::dataExtraction(std::string fileName) {
   this->dataInput("rawdata.txt");
 
   inputFile.close();
+}
 
-  // opens rawdata.txt file
-  inputFile.open("rawdata.txt");
-  
+void Database::dataEncryption() {
+  std::ifstream inputFile("rawdata.txt");
+  RandomPassword randomPassword;
+  PasswordEncrypt passwordEncrypt;
+  std::string line = "";
+  std::string name = "";
+
   // checks if file was successfully opened
-  while (!inputFile.is_open()) {
-    std::cout << "File: \"" << fileName << "\" failed to open." << std::endl;
-    std::cout << "File name: ";
-    std::getline(std::cin, fileName);
-    inputFile.open(fileName);
+    if (!inputFile.is_open()) {
+    std::cout << "File: \"rawdata.txt\" failed to open." << std::endl;
+    exit(1);
   }
 
   // encrypts password
@@ -56,7 +78,41 @@ void Database::dataExtraction(std::string fileName) {
     userNameAndPassword.push_back(passwordEncrypt.encryptPassword(name, password));
   }
 
+  // inputs encrypted data into encrypteddata.txt file
   this->dataInput("encrypteddata.txt");
+
+  inputFile.close();
+
+}
+
+// extracts usernames and passwords from file
+void Database::userAndPassExtraction(std::string filename) {
+  std::ifstream inputFile("encrypteddata.txt");
+  PasswordEncrypt passwordEncrypt;
+  std::string line = "";
+  std::string name = "";
+
+  // checks if file was successfully opened
+  while (!inputFile.is_open()) {
+    std::cout << "File: \"encrypteddata.txt\" failed to open." << std::endl;
+    exit(1);
+  }
+
+  // extracts data from file and appends random password to the end of the name
+  while (getline(inputFile, line)) {
+    std::istringstream iss(line);
+    std::string name = "";
+    std::string password = "";
+    std::string combine = "";
+
+    iss >> name;
+    iss >> password;
+    combine = name + " " + password;
+
+    userNameAndPassword.push_back(combine);
+  }
+
+  inputFile.close();
 }
 
 // inputs data into file & exclusive to the class
@@ -71,3 +127,4 @@ void Database::dataInput(std::string filename) {
 
   std::cout << filename <<  " has been created." << std::endl;
 }
+
