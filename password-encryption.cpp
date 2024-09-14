@@ -17,6 +17,19 @@ std::string PasswordEncrypt::encryptPassword(std::string userName, std::string p
   return userName + " " + encryptedPassword;
 }
 
+std::string PasswordEncrypt::encryptPassword(std::string password) {
+  std::string encryptedPassword = "";
+  char passwordChar;
+
+  for (int i = 0; i < password.length(); i++) {
+    passwordChar = this->vCypher(i, password[i]);
+
+    encryptedPassword += passwordChar;
+  }
+  
+  return encryptedPassword;
+}
+
 char PasswordEncrypt::vCypher(int index, char passwordChar) {
 passwordChar = passwordChar - 'a'; // Normalize to 0-25 range
 

@@ -81,6 +81,7 @@
 		"iomanip": "cpp",
 		"stack": "cpp",
 		"cassert": "cpp",
-		"list": "cpp"
+		"list": "cpp",
+		"filesystem": "cpp"
 	}
 }

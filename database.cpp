@@ -115,15 +115,17 @@ void Database::userAndPassExtraction(std::string filename) {
 
 // inputs data into file & exclusive to the class
 void Database::dataInput(std::string filename) {
-  std::ofstream outputFile(filename);
+std::ofstream outputFile(filename);
 
-  // writes into file all the usernames and passwords and erases them from the vector after 
-  while (userNameAndPassword.size() != 0) {
-    outputFile << userNameAndPassword.back() << std::endl;
-    userNameAndPassword.pop_back();
-  }
+// writes into file all the usernames and passwords and erases them from the vector after. keeps it in order
+for (std::vector<std::string>::iterator it = userNameAndPassword.begin(); it != userNameAndPassword.end(); ++it) {
+  outputFile << *it << std::endl;
+}
 
-  std::cout << filename <<  " has been created." << std::endl;
+// Clear the vector after writing to the file
+userNameAndPassword.clear();
+
+std::cout << filename << " has been created." << std::endl;
 }
 
 // search for a key in the hash table

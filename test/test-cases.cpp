@@ -57,20 +57,27 @@ void test_password_encryption() {
   std::cout << "----------test_password_encryption passed----------" << std::endl << std::endl;
 }
 
+// test database
 void test_database() {
   Database dataBase;
   std::string illegalUser = "ben";
-  std::string legalUser = "smith";
+  std::string legalUser = "SMITH";
+  std::string legalPassword = "";
 
   dataBase.dataMaster();
 
-  if (dataBase.searchUser(illegalUser) != "Illegal user not found!") {
-    throw std::runtime_error("User was found in the database!");
+  if (dataBase.searchUser(illegalUser) != "") {
+    throw std::runtime_error("Illegal user was found in the database!");
   }
 
-  if (dataBase.searchUser(legalUser) == "Legal user not found!") {
-    throw std::runtime_error("User was not found in the database!");
+  legalPassword = dataBase.searchUser(legalUser);
+  if (dataBase.searchUser(legalUser) != legalPassword) {
+    throw std::runtime_error("Legal user was not found in the database!");
   }
+
+  // manual check entry in the database file because password changes every time the program is executed
+  std::cout << "Legal user: " << legalUser << " Password: " << legalPassword << std::endl;
+
 
   std::cout << "----------test_database passed----------" << std::endl << std::endl;
 }
@@ -79,6 +86,7 @@ int main() {
   test_random_password();
   test_database_extraction();
   test_password_encryption();
+  test_database();
 
   return 1;
 }

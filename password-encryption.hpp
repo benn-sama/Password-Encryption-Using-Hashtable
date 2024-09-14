@@ -15,6 +15,9 @@ class PasswordEncrypt {
     // encrypts and returns
     std::string encryptPassword(std::string userName, std::string password); 
 
+    // encrypts and returns for testing purposes
+    std::string encryptPassword(std::string password);
+
 };
 
 #endif
